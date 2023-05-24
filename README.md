@@ -24,4 +24,5 @@ NodeJS (+Typescript), Express, MongoDB Atlas + Mongoose,  React
     `cmd+K V`
 
 **TO:DO**
-Check out cors package via `npm install cors` fro building backend that's accessible to multiple clients
+1. Check out cors package via `npm install cors` for building backend that's accessible to multiple clients
+2. Consider building local Redis DB and use `connect-redis` instead of `connect-mongo` (for optimizing storing session data specifically)
