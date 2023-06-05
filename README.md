@@ -12,10 +12,10 @@ NodeJS (+Typescript), Express, MongoDB Atlas + Mongoose,  React
 **Testing tools:** `postman`
 
 - Run the backend server:
-    `npx nodemon src/server.ts`
+    `npx nodemon src/server.ts` or `npm start`
+
+- Run frontend:
+    `react-scripts start` or `npmstart`
 
 - Check code with eslint:
     `npx eslint . --ext .ts`
-
-- create react with typescript template:
-    `npx create-react-app frontend --template typescript`
