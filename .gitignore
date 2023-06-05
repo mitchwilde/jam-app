@@ -2,7 +2,7 @@
 .DS_Store
 .vscode
 README.html
-.code-workspace
+*.code-workspace
 
 # Logs
 logs
