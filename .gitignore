@@ -1,6 +1,8 @@
+#dev-related
 .DS_Store
 .vscode
 README.html
+.code-workspace
 
 # Logs
 logs
