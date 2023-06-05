@@ -2,10 +2,14 @@ import { RequestHandler} from "express";
 import MemoModel from "../models/memo";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
+import { assertIsDefined } from "../util/assertIsDefined";
 
 export const getMemos: RequestHandler = async (req, res, next) => {
+    const authenticatedUserId = req.session.userId;
     try {
-        const memos = await MemoModel.find().exec();
+        assertIsDefined(authenticatedUserId);
+
+        const memos = await MemoModel.find({userId: authenticatedUserId}).exec();
         res.status(200).json(memos);
     } catch (error) {
         next(error);
@@ -14,7 +18,10 @@ export const getMemos: RequestHandler = async (req, res, next) => {
 
 export const getMemo: RequestHandler = async (req, res, next) => {
     const memoId = req.params.memoId;
+    const authenticatedUserId = req.session.userId;
     try {
+        assertIsDefined(authenticatedUserId);
+
         if(!mongoose.isValidObjectId(memoId)) {
             throw createHttpError(400, "Invalid memo Id")
         }
@@ -25,6 +32,9 @@ export const getMemo: RequestHandler = async (req, res, next) => {
             throw createHttpError(404, "Memo not found");
         }
         
+        if (!memo.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this memo");
+        }
         res.status(200).json(memo);
     } catch (error) {
         next(error);
@@ -39,17 +49,22 @@ interface CreateMemoBody {
 export const createMemo: RequestHandler<unknown, unknown, CreateMemoBody, unknown> = async (req, res, next) => {
     const title = req.body.title;
     const text = req.body.text;
+    const authenticatedUserId = req.session.userId;
 
     try {
+        assertIsDefined(authenticatedUserId);
+
         // check for title and send back descriptive error message if not present
         if(!title) {
             throw createHttpError(400, "Memo must have a title");
         }
 
         const newMemo = await MemoModel.create({
+            userId: authenticatedUserId,
             title: title,
             text: text,
         });
+
         res.status(201).json(newMemo);
     } catch (error) {
         next(error);
@@ -69,9 +84,11 @@ export const updateMemo: RequestHandler<UpdateMemoParams, unknown, UpdateMemoBod
     const memoId = req.params.memoId;
     const newTitle = req.body.title;
     const newText = req.body.text;
-
+    const authenticatedUserId = req.session.userId;
 
     try {
+        assertIsDefined(authenticatedUserId);
+
         if(!mongoose.isValidObjectId(memoId)) {
             throw createHttpError(400, "Invalid memo Id")
         }
@@ -86,6 +103,10 @@ export const updateMemo: RequestHandler<UpdateMemoParams, unknown, UpdateMemoBod
             throw createHttpError(404, "Memo not found");
         }
 
+        if (!memo.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this memo");
+        }
+
         memo.title = newTitle;
         memo.text = newText;
         
@@ -98,8 +119,11 @@ export const updateMemo: RequestHandler<UpdateMemoParams, unknown, UpdateMemoBod
 
 export const deleteMemo: RequestHandler = async(req, res, next) => {
     const memoId = req.params.memoId;
+    const authenticatedUserId = req.session.userId;
 
     try {
+        assertIsDefined(authenticatedUserId);
+
         if(!mongoose.isValidObjectId(memoId)) {
             throw createHttpError(400, "Invalid memo Id")
         }
@@ -108,6 +132,10 @@ export const deleteMemo: RequestHandler = async(req, res, next) => {
 
         if (!memo) {
             throw createHttpError(404, "Memo not found");
+        }
+
+        if (!memo.userId.equals(authenticatedUserId)) {
+            throw createHttpError(401, "You cannot access this memo");
         }
 
         memo.deleteOne();

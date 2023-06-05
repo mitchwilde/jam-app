@@ -7,6 +7,7 @@ import MongoStore from "connect-mongo";
 import userRoutes from "./routes/users";
 import memosRoutes from "./routes/memos";
 import createHttpError, { isHttpError } from "http-errors";
+import { requiresAuth } from "./middleware/auth";
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use(session({
 
 app.use("/api/users", userRoutes);
 
-app.use("/api/memos", memosRoutes);
+app.use("/api/memos", requiresAuth, memosRoutes);
 
 app.use((req, res, next) => {
     next(createHttpError(404, "Endpoint not found"));

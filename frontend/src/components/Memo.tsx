@@ -1,9 +1,9 @@
+import { Card } from "react-bootstrap";
+import { MdDelete } from "react-icons/md";
+import { Memo as MemoModel } from "../models/memo";
 import styles from "../styles/Memo.module.css";
 import styleUtils from "../styles/utils.module.css";
-import { Card } from "react-bootstrap";
-import { Memo as MemoModel } from "../models/memo";
 import { formatDate } from "../utils/formatDate";
-import { MdDelete } from "react-icons/md";
 
 interface MemoProps {
     memo: MemoModel;

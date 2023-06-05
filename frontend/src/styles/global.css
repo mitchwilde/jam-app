@@ -1,3 +1,10 @@
+/* @import "bootstrap"; */
+
+:root{
+  --theme-color:darkcyan;
+  --l:50%;
+}
+
 body {
   margin: 0;
   background: #fafafa;
@@ -11,4 +18,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.jamTheme {
+  background: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--theme-color);
+  --bs-btn-border-color: hsl(var(--theme-color),calc(var(--l) - 7.5%));
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--theme-color);
+  --bs-btn-hover-border-color: hsl(var(--theme-color),calc(var(--l) - 10%));
+  --bs-btn-focus-shadow-rgb: var(--theme-color);
+  --bs-btn-active-color: var(--theme-color);
+  --bs-btn-active-bg: hsl(var(--theme-color),calc(var(--l) - 20%));
+  --bs-btn-active-border-color: hsl(var(--theme-color),calc(var(--l) - 20%));
+  --bs-btn-disabled-color: var(--theme-color);
+  --bs-btn-disabled-bg: hsl(var(--theme-color),calc(var(--l) - 20%));
+  --bs-btn-disabled-border-color: hsl(var(--theme-color),calc(var(--l) - 20%));
 }

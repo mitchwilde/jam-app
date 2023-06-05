@@ -19,10 +19,3 @@ NodeJS (+Typescript), Express, MongoDB Atlas + Mongoose,  React
 
 - create react with typescript template:
     `npx create-react-app frontend --template typescript`
-
-- HTML preview when .html is highlighted in file exlporer:
-    `cmd+K V`
-
-**TO:DO**
-1. Check out cors package via `npm install cors` for building backend that's accessible to multiple clients
-2. Consider building local Redis DB and use `connect-redis` instead of `connect-mongo` (for optimizing storing session data specifically)
