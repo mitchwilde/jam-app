@@ -1,35 +1,41 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import * as GlobalApi from "./network/global_api"
 import LoginModal from "./components/LoginModal";
 import NavBar from "./components/NavBar";
 import SignUpModal from "./components/SignUpModal";
 import { User } from "./models/user";
-import * as MemosApi from "./network/memos_api";
 import MemosPage from "./pages/MemosPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import PrivacyPage from "./pages/PrivacyPage";
+import ChatPage from "./pages/ChatPage";
 import styles from "./styles/app.module.css";
+import HomePage from "./pages/HomePage";
+import CalendarPage from "./pages/CalendarPage";
+import { UnauthorizedError } from "./errors/http_errors";
+
 
 
 function App() {
 
     const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
-
-    const [showSignUpModal, setShowSignUpModal] = useState(false);
-    const [showLogInModal, setShowLogInModal] = useState(false);
-
     useEffect(() => {
-        async function fetchLoggedInUser() {
+        async function fetchLoggedInUserQuiet() {
             try {
-                const user = await MemosApi.getLoggedInUser();
+                const user = await GlobalApi.getLoggedInUserQuiet();
                 setLoggedInUser(user);
             } catch (error) {
-                console.error(error);
+                if (error instanceof UnauthorizedError) {
+                    console.info(error.message);
+                } else {
+                    console.error(error);
+                }
             }
         }
-        fetchLoggedInUser();
+        fetchLoggedInUserQuiet();
     }, []);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+    const [showLogInModal, setShowLogInModal] = useState(false);
 
     return (
         <BrowserRouter>
@@ -44,11 +50,19 @@ function App() {
                     <Routes>
                         <Route
                         path='/'
-                        element={<MemosPage loggedInUser={loggedInUser}/>}
+                        element={<HomePage/>}
                         />
                         <Route
-                        path='/privacy'
-                        element={<PrivacyPage/>}
+                        path='/memos'
+                        element={<MemosPage /*loggedInUser={loggedInUser}*/ />}
+                        />
+                        <Route
+                        path='/chat'
+                        element={<ChatPage/>}
+                        />
+                         <Route
+                        path='/calendar'
+                        element={<CalendarPage/>}
                         />
                         <Route
                         path='/*'

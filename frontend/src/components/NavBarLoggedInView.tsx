@@ -1,6 +1,6 @@
 import { Button, Navbar, NavItem } from "react-bootstrap";
 import { User } from "../models/user";
-import * as MemosApi from "../network/memos_api";
+import * as MemosApi from "../network/global_api";
 
 interface NavBarLoggedInViewProps {
     user: User,

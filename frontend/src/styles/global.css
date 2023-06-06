@@ -5,6 +5,11 @@
   --l:50%;
 }
 
+.jamTheme {
+  background: var(--theme-color);
+  border-color: var(--theme-color);
+}
+
 body {
   margin: 0;
   background: #fafafa;
@@ -15,14 +20,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  text-align: center;
+}
+
+#homePageText {
+  text-align: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.jamTheme {
-  background: var(--theme-color);
-  border-color: var(--theme-color);
 }
 
 .btn-primary {

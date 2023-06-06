@@ -1,6 +1,6 @@
-# Jam App 
+# Jam App
 
-**Purpose:**  Leverage the MERN stack to create a single-page web app that serves as a commmon web location and tool for business collaboration with a variety of features enabling easier communication, development, and scheduling
+**Purpose:**  Leverage the MERN stack and MVC pattern to create a single-page web app that serves as a commmon space and tool for business collaboration with a variety of features enabling easier communication, development, and scheduling
 
 **Technologies:**
 NodeJS (+Typescript), Express, MongoDB Atlas + Mongoose,  React

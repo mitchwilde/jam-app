@@ -1,9 +1,10 @@
 import express from "express";
 import * as MemosController from "../controllers/memos";
+import { requiresAuth } from "../middleware/auth";
 
 const router = express.Router();
 
-router.get("/", MemosController.getMemos);
+router.get("/", requiresAuth, MemosController.getMemos);
 
 router.get("/:memoId", MemosController.getMemo);
 

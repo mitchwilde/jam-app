@@ -1,10 +1,12 @@
-import { Button, Form, Modal } from "react-bootstrap";
+import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { User } from "../models/user";
-import * as MemosApi from "../network/memos_api";
-import { SignUpCredentials } from "../network/memos_api";
+import * as MemosApi from "../network/global_api";
+import { SignUpCredentials } from "../network/global_api";
 import styleUtils from "../styles/utils.module.css";
 import TextInputField from "./form/TextInputField";
+import { useState } from "react";
+import { ConflictError } from "../errors/http_errors";
 
 interface SignUpModalProps {
     onDismiss: () => void,
@@ -13,6 +15,8 @@ interface SignUpModalProps {
 
 const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
 
+    const [errorText, setErrorText] = useState<string|null>(null);
+
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SignUpCredentials>();
 
     async function onSubmit(credentials: SignUpCredentials) {
@@ -20,6 +24,11 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
             const newUser = await MemosApi.signUp(credentials);
             onSignUpSuccessful(newUser);
         } catch (error) {
+            if (error instanceof ConflictError) {
+                setErrorText(error.message);
+            } else {
+                alert(error);
+            }
             console.error(error);
         }
     }
@@ -32,6 +41,11 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                {errorText &&
+                    <Alert variant = "danger">
+                        {errorText}
+                    </Alert>
+                }
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     <TextInputField
                         name="username"
