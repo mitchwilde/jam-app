@@ -1,0 +1,19 @@
+.noteCard {
+  background-color: cornsilk;
+}
+
+.cardBody {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: cornsilk;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.noteText {
+  white-space: pre-line;
+}
+

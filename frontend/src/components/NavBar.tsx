@@ -1,27 +1,30 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { User } from "../models/user";
 import NavBarLoggedInView from "./NavBarLoggedInView";
 import NavBarLoggedOutView from "./NavBarLoggedOutView";
-
-//import styles from '../styles/NavBar.module.css';
-//import {Nav, NavItem, Navbar, NavDropdown, Dropdown, Button, Container} from 'react-bootstrap';
+import { useUserContext } from "../UserContext";
 
 
 interface NavBarProps {
-    loggedInUser: User | null,
     onSignUpClicked: () => void,
-    onLoginClicked: () => void,
-    onLogoutSuccessful: () => void,
+    onLoginClicked: () => void
 }
 
-const NavBar = ({ loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSuccessful }: NavBarProps) => {
+const NavBar = ({ onSignUpClicked, onLoginClicked }: NavBarProps) => {
+    const { loggedInUser } = useUserContext();
     return (
         <Navbar className="jamTheme" variant="dark" expand="sm" sticky="top" collapseOnSelect={true}>
             <Container>
-                <Navbar.Brand >
+                <Navbar.Brand>
                     <Nav.Link eventKey={1} as={Link} to="/">
-                        Jam App
+                    <img
+                        src="/high-five-icon.png"
+                        width="32"
+                        height="32"
+                        className="d-inline-block align-top"
+                        alt="Jam high five logo"
+                    />{'  '}
+                    Jam
                     </Nav.Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-navbar" />
@@ -40,14 +43,14 @@ const NavBar = ({ loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSuccess
                         </Nav>
                         <Nav>
                             <Nav.Link eventKey={4} as={Link} to="/chat">
-                                Chat
+                                Message Board
                             </Nav.Link>
                         </Nav>
                         </>
                     }
                     <Nav className="ms-auto">
                         {loggedInUser
-                            ? <NavBarLoggedInView user={loggedInUser} onLogoutSuccessful={onLogoutSuccessful} />
+                            ? <NavBarLoggedInView/>
                             : <NavBarLoggedOutView onLoginClicked={onLoginClicked} onSignUpClicked={onSignUpClicked} />
                         }
                     </Nav>

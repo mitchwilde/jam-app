@@ -1,31 +1,25 @@
-import { Button, Navbar, NavItem } from "react-bootstrap";
-import { User } from "../models/user";
-import * as MemosApi from "../network/global_api";
+import { Button, Navbar, Nav} from "react-bootstrap";
+import * as GlobalApi from "../network/global_api";
+import { useUserContext } from "../UserContext";
 
-interface NavBarLoggedInViewProps {
-    user: User,
-    onLogoutSuccessful: () => void,
-}
 
-const NavBarLoggedInView = ({ user, onLogoutSuccessful }: NavBarLoggedInViewProps) => {
-
+const NavBarLoggedInView = () => {
+    const { loggedInUser } = useUserContext();
     async function logout() {
         try {
-            await MemosApi.logout();
-            onLogoutSuccessful();
+            await GlobalApi.logout();
         } catch (error) {
             console.error(error);
         }
     }
-
     return (
         <>
             <Navbar.Text className="me-2">
-                Signed in as: {user.username}
+                Signed in as: {loggedInUser?.username}
             </Navbar.Text>
-            <NavItem>
+            <Nav.Item>
                 <Button onClick={logout}>Log out</Button>
-            </NavItem>
+            </Nav.Item>
         </>
     );
 }

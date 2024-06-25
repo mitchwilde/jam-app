@@ -34,7 +34,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/memos", requiresAuth, memosRoutes);
 
 app.use((req, res, next) => {
-    next(createHttpError(404, "Endpoint not found"));
+    next(createHttpError(404, "Endpoint '"+req.url+"' not found"));
 });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

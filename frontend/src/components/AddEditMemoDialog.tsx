@@ -52,7 +52,8 @@ const AddEditMemoDialog = ({ memoToEdit, onDismiss, onMemoSaved }: AddEditMemoDi
                         placeholder="Title"
                         register={register}
                         registerOptions={{ required: "Required" }}
-                        error={errors.title}
+                        error={errors.title} 
+                        autoComplete={""}
                     />
 
                     <TextInputField
@@ -62,6 +63,7 @@ const AddEditMemoDialog = ({ memoToEdit, onDismiss, onMemoSaved }: AddEditMemoDi
                         rows={5}
                         placeholder="Text"
                         register={register}
+                        autoComplete={""}
                     />
                 </Form>
             </Modal.Body>

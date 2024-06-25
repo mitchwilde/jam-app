@@ -4,6 +4,7 @@ import { FieldError, RegisterOptions, UseFormRegister } from "react-hook-form";
 interface TextInputFieldProps {
     name: string,
     label: string,
+    autoComplete: string,
     register: UseFormRegister<any>,
     registerOptions?: RegisterOptions,
     error?: FieldError,

@@ -5,20 +5,19 @@ import * as GlobalApi from "./network/global_api"
 import LoginModal from "./components/LoginModal";
 import NavBar from "./components/NavBar";
 import SignUpModal from "./components/SignUpModal";
-import { User } from "./models/user";
 import MemosPage from "./pages/MemosPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import ChatPage from "./pages/ChatPage";
+import MessageBoardPage from "./pages/MessageBoardPage";
 import styles from "./styles/app.module.css";
 import HomePage from "./pages/HomePage";
 import CalendarPage from "./pages/CalendarPage";
 import { UnauthorizedError } from "./errors/http_errors";
+import { useUserContext } from "./UserContext";
 
 
 
 function App() {
-
-    const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
+    const {loggedInUser, setLoggedInUser} = useUserContext();
     useEffect(() => {
         async function fetchLoggedInUserQuiet() {
             try {
@@ -32,7 +31,11 @@ function App() {
                 }
             }
         }
-        fetchLoggedInUserQuiet();
+        if (!loggedInUser) {
+            fetchLoggedInUserQuiet();
+        } else {
+            setLoggedInUser(loggedInUser);
+        }
     }, []);
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const [showLogInModal, setShowLogInModal] = useState(false);
@@ -41,10 +44,8 @@ function App() {
         <BrowserRouter>
             <div>
                 <NavBar
-                    loggedInUser={loggedInUser}
                     onLoginClicked={() => setShowLogInModal(true)}
                     onSignUpClicked={() => setShowSignUpModal(true)}
-                    onLogoutSuccessful={() => setLoggedInUser(null)}
                 />
                 <Container className={styles.pageContainer}>
                     <Routes>
@@ -58,9 +59,9 @@ function App() {
                         />
                         <Route
                         path='/chat'
-                        element={<ChatPage/>}
+                        element={<MessageBoardPage/>}
                         />
-                         <Route
+                        <Route
                         path='/calendar'
                         element={<CalendarPage/>}
                         />

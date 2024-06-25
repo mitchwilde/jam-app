@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PO xmlns="http://www.directcommerce.com/2017/06/GFSEncodedPO">
+  <POHeader>
+    <PONumber>4747030011</PONumber>    
+    <LineItemCount>1</LineItemCount>     
+    <TotalAmount>637011.50</TotalAmount>     
+    <ReferenceData>
+      <PODate>20020716</PODate>
+      <DueDate>20020722</DueDate> 
+      <POType>ST</POType>
+    </ReferenceData>
+    <TermsPaymentInfo>        
+        <DaysUntilDiscountExpires>30</DaysUntilDiscountExpires>
+    </TermsPaymentInfo>
+	<TermsDelivery>FOB PLANTSITE</TermsDelivery>
+    <StandardClause>THIS ORDER IS SUBJECT TO AND INCORPORATED BY REFERENCE THE Gordon Food Services STANDARD TERMS AND CONDITIONS ( JAN.2001 ED.).</StandardClause>
+    <POComments>TL Central for Kevin O'Brien,  RUSH ORDER Vendor:  Please rush this order.  Also need C of A with order. Please call if you have any questions. Thank You Penny Burgess 765-477-4510 GFS Receiving:   Please receive and deliver to Kevin Obrien TL133/3 # 4807  Rush Order</POComments>
+    <Freight>            
+      <ShipMethod>CC</ShipMethod>
+      <SCAC>LNHM</SCAC>
+      <CarrierName>LANGHAM  TRANSPORT</CarrierName>
+      <LocationQualifiers>
+        <LocationQualifier>
+            <Code>DE</Code>
+            <Description>ST LOUIS, MO 63178</Description>
+        </LocationQualifier>              
+      </LocationQualifiers>
+    </Freight>
+
+    <GlobalEncoding>
+        <Amount>637011.50</Amount>
+        <GlobalID>1958191</GlobalID>
+        <GlobalDesc>MISC GOODS</GlobalDesc>
+        <GlobalLOC>NY-01015</GlobalLOC>
+        <GlobalGroupAccount>GR1411</GlobalGroupAccount>
+        <GlobalDept>ACTURIAL</GlobalDept>
+        <GlobalProject>N19A</GlobalProject>
+        <GlobalRC>81814</GlobalRC>
+        <GlobalGL>41</GlobalGL>
+      </GlobalEncoding>
+  </POHeader>
+
+  <PODetail>
+    <POLineItem>
+      <LineItemNumber>1</LineItemNumber>           
+      <LineItemDescription>SP81016  Chemical, Sodium Sulfide Nonah* Chemical, Sodium Sulfide Nonahydrate Reagent Plus, 99.99+%  Cat# 431648,  50g MFR PART #: 1313-84-4 Delivery Date : 07/18/2002 VEND CATALOG # : 431648</LineItemDescription>
+      <ProductNumber>SP81016</ProductNumber>
+      <UnitPrice>35000.45</UnitPrice>
+      <UnitOfMeasure>EA</UnitOfMeasure>
+      <Quantity>5</Quantity>  
+      <RemainingQuantity>5</RemainingQuantity>  
+      <Material>6552323</Material>
+    </POLineItem>
+    <POLineItem>
+      <LineItemNumber>2</LineItemNumber>           
+      <LineItemDescription>SP81016  Chemical, Sodium Sulfide Nonah* Chemical, Sodium Sulfide Nonahydrate Reagent Plus, 99.99+%  Cat# 431648,  50g MFR PART #: 1313-84-4 Delivery Date : 07/18/2002 VEND CATALOG # : 431648</LineItemDescription>
+      <ProductNumber>SP81016</ProductNumber>
+      <UnitPrice>45000.50</UnitPrice>
+      <UnitOfMeasure>EA</UnitOfMeasure>
+      <Quantity>9</Quantity>  
+      <RemainingQuantity>9</RemainingQuantity>  
+      <Material>654823</Material>
+    </POLineItem>
+    <POLineItem>
+      <LineItemNumber>3</LineItemNumber>           
+      <LineItemDescription>SP81016  Chemical, Sodium Sulfide Nonah* Chemical, Sodium Sulfide Nonahydrate Reagent Plus, 99.99+%  Cat# 431648,  50g MFR PART #: 1313-84-4 Delivery Date : 07/18/2002 VEND CATALOG # : 431648</LineItemDescription>
+      <ProductNumber>SP81016</ProductNumber>
+      <UnitPrice>3000.25</UnitPrice>
+      <UnitOfMeasure>EA</UnitOfMeasure>
+      <Quantity>19</Quantity>  
+      <RemainingQuantity>19</RemainingQuantity>  
+      <Material>1242323</Material>
+    </POLineItem>
+  </PODetail>
+  
+  <POParties>  
+    <VendorSupplierParty>
+      <Name>GFS Vendor</Name>
+      <ID>0000017410</ID>  
+      <Address>A Labortories</Address>
+      <Address2>11200 Sigma Aldrich Rd</Address2>
+      <City>St. Louis</City>
+      <StateProvince>MO</StateProvince>
+      <PostalCode>63134</PostalCode>       
+      <PhoneNumber>765-477-6598</PhoneNumber> 
+      <FaxNumber>765-477-6599</FaxNumber>   
+   </VendorSupplierParty>
+
+    <ShipToParty>
+      <Name>Gordon Food Services</Name>            
+      <ID>006421325</ID>
+      <Address>Tippecanoe Labortories</Address>
+      <Address2>1650 GFS Rd</Address2>
+      <City>Lafayette</City>
+      <StateProvince>NY</StateProvince>
+      <PostalCode>47909</PostalCode>      
+    </ShipToParty>
+
+    <BuyerParty>
+      <Name>Gordon Food Services</Name>
+      <ID>006421325</ID>
+     <Contact>Penny Burgess</Contact> 
+     <PhoneNumber>765-477-4510</PhoneNumber> 
+     <FaxNumber>253-9243826</FaxNumber>
+     <Email>penny.burgess@weyerheauser.com</Email>
+    </BuyerParty>
+
+    <BillToParty>
+      <Name>Gordon Food Services</Name>
+      <ID>006421325</ID>
+      <Address>Attn: Accounts Payable Control</Address>
+      <Address>PO Box 6034</Address>
+      <City>New York</City>
+      <StateProvince>NY</StateProvince>
+      <PostalCode>10010</PostalCode>     
+    </BillToParty>
+
+  </POParties>
+
+</PO>

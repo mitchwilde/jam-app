@@ -54,8 +54,8 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                         placeholder="Username"
                         register={register}
                         registerOptions={{ required: "Required" }}
-                        error={errors.username}
-                    />
+                        error={errors.username} 
+                        autoComplete="username"/>
                     <TextInputField
                         name="email"
                         label="Email"
@@ -64,6 +64,7 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                         register={register}
                         registerOptions={{ required: "Required" }}
                         error={errors.email}
+                        autoComplete="email"
                     />
                     <TextInputField
                         name="password"
@@ -73,6 +74,7 @@ const SignUpModal = ({ onDismiss, onSignUpSuccessful }: SignUpModalProps) => {
                         register={register}
                         registerOptions={{ required: "Required" }}
                         error={errors.password}
+                        autoComplete="current-password"
                     />
                     <Button
                         type="submit"

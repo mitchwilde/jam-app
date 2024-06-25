@@ -3,6 +3,7 @@
 .vscode
 README.html
 *.code-workspace
+xml_parser/target/*
 
 # Logs
 logs

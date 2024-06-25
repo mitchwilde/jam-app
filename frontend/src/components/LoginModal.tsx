@@ -1,7 +1,7 @@
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { User } from "../models/user";
-import * as MemosApi from "../network/global_api";
+import * as GlobalApi from "../network/global_api";
 import { LoginCredentials } from "../network/global_api";
 import styleUtils from "../styles/utils.module.css";
 import TextInputField from "./form/TextInputField";
@@ -15,14 +15,13 @@ interface LoginModalProps {
 
 const LoginModal = ({onDismiss, onLoginSuccessful}: LoginModalProps) => {
     
-const [errorText, setErrorText] = useState<string|null>(null);
-
+    const [errorText, setErrorText] = useState<string|null>(null);
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginCredentials>();
     
     async function onSubmit(credentials: LoginCredentials) {
 
         try {
-            const user = await MemosApi.login(credentials);
+            const user = await GlobalApi.login(credentials);
             onLoginSuccessful(user);
         } catch (error) {
             if (error instanceof UnauthorizedError) {
@@ -55,8 +54,9 @@ const [errorText, setErrorText] = useState<string|null>(null);
                         type="text"
                         placeholder="Username"
                         register={register}
-                        registerOptions={{ required: "Required"}}
+                        registerOptions={{ required: "Required" }}
                         error={errors.username}
+                        autoComplete="username"
                     />
                     <TextInputField
                         name="password"
@@ -66,6 +66,7 @@ const [errorText, setErrorText] = useState<string|null>(null);
                         register={register}
                         registerOptions={{ required: "Required"}}
                         error={errors.password}
+                        autoComplete="current-password"
                     />
                     <Button
                         type="submit"
